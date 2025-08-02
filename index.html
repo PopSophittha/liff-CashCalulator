@@ -1,32 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <title>คำนวณยอดเงิน</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: sans-serif;
-      padding: 20px;
-      background-color: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 16px;
+      background-color: #f0f2f5;
+      color: #333;
     }
     h1 {
       text-align: center;
+      color: #2c3e50;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
     .row {
-      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     .row label {
-      display: inline-block;
-      width: 120px;
+      font-size: 1rem;
+      flex: 1;
     }
-    input[type="number"] {
-      width: 60px;
+    .row input[type="number"] {
+      width: 80px;
+      padding: 6px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       text-align: center;
     }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.2rem;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
     .result {
-      margin-top: 20px;
-      font-weight: bold;
+      margin-top: 24px;
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -34,18 +72,18 @@
   <h1>💵 คำนวณยอดเงิน</h1>
 
   <div id="form">
-    <div class="row"><label>แบงค์ 1,000:</label> <input type="number" id="b1000" value="" placeholder="0"> ใบ</div>
-    <div class="row"><label>แบงค์ 500:</label>  <input type="number" id="b500" value="" placeholder="0"> ใบ</div>
-    <div class="row"><label>แบงค์ 100:</label>  <input type="number" id="b100" value="" placeholder="0"> ใบ</div>
-    <div class="row"><label>แบงค์ 50:</label>   <input type="number" id="b50" value="" placeholder="0"> ใบ</div>
-    <div class="row"><label>แบงค์ 20:</label>   <input type="number" id="b20" value="" placeholder="0"> ใบ</div>
-    <div class="row"><label>เหรียญ 10:</label>  <input type="number" id="c10" value="" placeholder="0"> เหรียญ</div>
-    <div class="row"><label>เหรียญ 5:</label>   <input type="number" id="c5" value="" placeholder="0"> เหรียญ</div>
-    <div class="row"><label>เหรียญ 2:</label>   <input type="number" id="c2" value="" placeholder="0"> เหรียญ</div>
-    <div class="row"><label>เหรียญ 1:</label>   <input type="number" id="c1" value="" placeholder="0"> เหรียญ</div>
+    <div class="row"><label>แบงค์ 1,000:</label> <input type="number" id="b1000" placeholder="0"></div>
+    <div class="row"><label>แบงค์ 500:</label>  <input type="number" id="b500" placeholder="0"></div>
+    <div class="row"><label>แบงค์ 100:</label>  <input type="number" id="b100" placeholder="0"></div>
+    <div class="row"><label>แบงค์ 50:</label>   <input type="number" id="b50" placeholder="0"></div>
+    <div class="row"><label>แบงค์ 20:</label>   <input type="number" id="b20" placeholder="0"></div>
+    <div class="row"><label>เหรียญ 10:</label>  <input type="number" id="c10" placeholder="0"></div>
+    <div class="row"><label>เหรียญ 5:</label>   <input type="number" id="c5" placeholder="0"></div>
+    <div class="row"><label>เหรียญ 2:</label>   <input type="number" id="c2" placeholder="0"></div>
+    <div class="row"><label>เหรียญ 1:</label>   <input type="number" id="c1" placeholder="0"></div>
   </div>
 
-  <button onclick="calculateTotal()">คำนวณยอด</button>
+  <button onclick="calculateTotal()">🧮 คำนวณยอด</button>
 
   <div class="result" id="output"></div>
 
@@ -70,12 +108,12 @@
         const count = parseInt(document.getElementById(denom.id).value) || 0;
         const sum = count * denom.value;
         if (count > 0) {
-          message += `💰 ${denom.label} บาท x ${count} = ${sum.toLocaleString()} บาท<br>`;
+          message += `💰 ${denom.label} บาท × ${count} = ${sum.toLocaleString()} บาท<br>`;
         }
         total += sum;
       });
 
-      message += `<hr>🧮 รวมทั้งหมด: <strong>${total.toLocaleString()}</strong> บาท`;
+      message += `<hr><strong>💡 รวมทั้งหมด: ${total.toLocaleString()} บาท</strong>`;
       document.getElementById("output").innerHTML = message;
     }
   </script>
