@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>คำนวณยอดเงิน</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .row {
+      margin-bottom: 12px;
+    }
+    .row label {
+      display: inline-block;
+      width: 120px;
+    }
+    input[type="number"] {
+      width: 60px;
+      text-align: center;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>💵 คำนวณยอดเงิน</h1>
+
+  <div id="form">
+    <div class="row"><label>แบงค์ 1,000:</label> <input type="number" id="b1000" value="" placeholder="0"> ใบ</div>
+    <div class="row"><label>แบงค์ 500:</label>  <input type="number" id="b500" value="" placeholder="0"> ใบ</div>
+    <div class="row"><label>แบงค์ 100:</label>  <input type="number" id="b100" value="" placeholder="0"> ใบ</div>
+    <div class="row"><label>แบงค์ 50:</label>   <input type="number" id="b50" value="" placeholder="0"> ใบ</div>
+    <div class="row"><label>แบงค์ 20:</label>   <input type="number" id="b20" value="" placeholder="0"> ใบ</div>
+    <div class="row"><label>เหรียญ 10:</label>  <input type="number" id="c10" value="" placeholder="0"> เหรียญ</div>
+    <div class="row"><label>เหรียญ 5:</label>   <input type="number" id="c5" value="" placeholder="0"> เหรียญ</div>
+    <div class="row"><label>เหรียญ 2:</label>   <input type="number" id="c2" value="" placeholder="0"> เหรียญ</div>
+    <div class="row"><label>เหรียญ 1:</label>   <input type="number" id="c1" value="" placeholder="0"> เหรียญ</div>
+  </div>
+
+  <button onclick="calculateTotal()">คำนวณยอด</button>
+
+  <div class="result" id="output"></div>
+
+  <script>
+    function calculateTotal() {
+      const denominations = [
+        { id: "b1000", label: "1,000", value: 1000 },
+        { id: "b500",  label: "500", value: 500 },
+        { id: "b100",  label: "100", value: 100 },
+        { id: "b50",   label: "50", value: 50 },
+        { id: "b20",   label: "20", value: 20 },
+        { id: "c10",   label: "10", value: 10 },
+        { id: "c5",    label: "5", value: 5 },
+        { id: "c2",    label: "2", value: 2 },
+        { id: "c1",    label: "1", value: 1 },
+      ];
+
+      let total = 0;
+      let message = "";
+
+      denominations.forEach(denom => {
+        const count = parseInt(document.getElementById(denom.id).value) || 0;
+        const sum = count * denom.value;
+        if (count > 0) {
+          message += `💰 ${denom.label} บาท x ${count} = ${sum.toLocaleString()} บาท<br>`;
+        }
+        total += sum;
+      });
+
+      message += `<hr>🧮 รวมทั้งหมด: <strong>${total.toLocaleString()}</strong> บาท`;
+      document.getElementById("output").innerHTML = message;
+    }
+  </script>
+</body>
+</html>
